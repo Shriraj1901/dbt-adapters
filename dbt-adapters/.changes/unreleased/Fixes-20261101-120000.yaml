@@ -1,0 +1,6 @@
+kind: Fixes
+body: Don't warn about documented columns that are missing from the relation when running `dbt clone`.
+time: 2026-11-01T12:00:00.000000+05:30
+custom:
+  Author: Shriraj1901
+  Issue: "2182"

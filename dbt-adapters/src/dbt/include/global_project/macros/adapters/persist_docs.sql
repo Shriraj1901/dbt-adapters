@@ -40,7 +40,8 @@
       {% do missing.append(col_name) %}
     {% endif %}
   {% endfor %}
-  {% if missing | length > 0 %}
+  {#-- `dbt clone` copies the state's relation, so columns documented since that build are expected to be absent. --#}
+  {% if missing | length > 0 and flags.WHICH != 'clone' %}
     {{ exceptions.warn("In relation " ~ relation.render() ~ ": The following columns are specified in the schema but are not present in the database: " ~ missing | join(", ")) }}
   {% endif %}
   {{ return(filtered) }}
